@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://hdgew7ebqh2v"]
+
+[ext_resource type="Script" path="res://chunk/chunk.gd" id="1_hexu0"]
+[ext_resource type="Texture2D" uid="uid://i2l7u54lww3s" path="res://assets/textures/texture_01.png" id="2_dm1fq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gg3q6"]
+albedo_texture = ExtResource("2_dm1fq")
+uv1_scale = Vector3(2, 10, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_amoev"]
+material = SubResource("StandardMaterial3D_gg3q6")
+size = Vector2(50, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dykbs"]
+data = PackedVector3Array(25, 0, 100, -25, 0, 100, 25, 0, -100, -25, 0, 100, -25, 0, -100, 25, 0, -100)
+
+[node name="Chunk" type="Node3D"]
+script = ExtResource("1_hexu0")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+mesh = SubResource("PlaneMesh_amoev")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dykbs")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -250)

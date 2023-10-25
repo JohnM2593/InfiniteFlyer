@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0dmjqe42timc"]
+
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_kx6bd"]
+[ext_resource type="Texture2D" uid="uid://bkx11has7a0sh" path="res://assets/bar_glass.png" id="2_d1sfw"]
+[ext_resource type="Texture2D" uid="uid://bulouni31xt8t" path="res://assets/bar_red.png" id="3_keha2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mo7fw"]
+font_size = 48
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_kx6bd")
+
+[node name="FuelBar" type="TextureProgressBar" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 10.0
+step = 0.1
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_over = ExtResource("2_d1sfw")
+texture_progress = ExtResource("3_keha2")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "0"
+label_settings = SubResource("LabelSettings_mo7fw")

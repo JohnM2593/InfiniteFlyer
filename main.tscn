@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvj1ibpruqhi6"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_4koir"]
+[ext_resource type="PackedScene" uid="uid://dy1ybfk5mry34" path="res://plane/plane.tscn" id="1_8weia"]
+[ext_resource type="Texture2D" uid="uid://cxnairddjep4q" path="res://assets/styled_sky.hdr" id="1_x5xhw"]
+[ext_resource type="PackedScene" uid="uid://hdgew7ebqh2v" path="res://chunk/chunk.tscn" id="3_h7oh4"]
+[ext_resource type="Script" path="res://plane_camera/plane_camera.gd" id="4_tgeop"]
+[ext_resource type="PackedScene" uid="uid://d0dmjqe42timc" path="res://ui/ui.tscn" id="6_vedxb"]
+[ext_resource type="AudioStream" uid="uid://d2uqqj1qwdgxf" path="res://assets/audio/Riverside Ride Short Loop.wav" id="7_ctult"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c4aa1"]
+panorama = ExtResource("1_x5xhw")
+
+[sub_resource type="Sky" id="Sky_yvr3u"]
+sky_material = SubResource("PanoramaSkyMaterial_c4aa1")
+
+[sub_resource type="Environment" id="Environment_nwcgx"]
+background_mode = 2
+sky = SubResource("Sky_yvr3u")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_4koir")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nwcgx")
+
+[node name="Plane" parent="." instance=ExtResource("1_8weia")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 13, 0)
+
+[node name="Chunk" parent="." instance=ExtResource("3_h7oh4")]
+
+[node name="PlaneCamera" type="Camera3D" parent="."]
+script = ExtResource("4_tgeop")
+target_path = NodePath("../Plane")
+offset = Vector3(7, 7, 15)
+
+[node name="UI" parent="." instance=ExtResource("6_vedxb")]
+
+[node name="Music" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_ctult")
+volume_db = -4.0
+autoplay = true
+
+[connection signal="fuel_changed" from="Plane" to="UI" method="_on_plane_fuel_changed"]
+[connection signal="score_changed" from="Plane" to="UI" method="_on_plane_score_changed"]

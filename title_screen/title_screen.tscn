@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6mikkt3p14ny"]
+
+[ext_resource type="FontFile" uid="uid://b2p25jc1566b6" path="res://assets/Baloo2-Medium.ttf" id="1_6mlmy"]
+[ext_resource type="Script" path="res://title_screen/title_screen.gd" id="1_p4qth"]
+[ext_resource type="Texture2D" uid="uid://cxnairddjep4q" path="res://assets/styled_sky.hdr" id="2_3mi2n"]
+[ext_resource type="Texture2D" uid="uid://c3cpolvfyqu8t" path="res://assets/buttons/play_button.png" id="4_r2lin"]
+[ext_resource type="Texture2D" uid="uid://dt5dyw3b504s" path="res://assets/buttons/play_button_pr.png" id="5_swxfm"]
+[ext_resource type="Texture2D" uid="uid://cnysxs1vl452m" path="res://assets/buttons/play_button_h.png" id="6_6i040"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tuoyr"]
+font = ExtResource("1_6mlmy")
+font_size = 50
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.7931, 16.1967)
+script = ExtResource("1_p4qth")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3mi2n")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.99761
+offset_top = -15.0607
+offset_right = 430.002
+offset_bottom = 190.939
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.122193, 0.133879)
+text = "InfFlyer"
+label_settings = SubResource("LabelSettings_tuoyr")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 13.8922
+offset_top = 19.7571
+offset_right = 213.892
+offset_bottom = 219.757
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.0583803, 0.089514)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_r2lin")
+texture_pressed = ExtResource("5_swxfm")
+texture_hover = ExtResource("6_6i040")
+stretch_mode = 0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
